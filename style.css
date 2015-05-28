@@ -1,0 +1,248 @@
+body 
+{
+	margin:0px; 
+	padding: 83px 0px 0px 0px; 
+	font: normal 16px Tahoma, "Trebuchet MS", Trebuchet, Helvetica, Verdana, sans-serif;
+	color: #333;
+}
+
+div#header
+{  
+	position:absolute;  
+	z-index:1; top:0;  
+	left:0;  
+	width:100%;  
+	height:60px; 
+	background-color: #EEE;
+	text-align: center; 
+	font-weight: bold; 
+	font-size:16px;
+	border-width:0px 0px 1px 0px; 
+	border-color:#003366;
+	color: #003366;
+	border-style:solid;
+	overflow:visible;
+}
+div#admin_nav
+{
+	position:absolute;
+	top:60px;
+	left:0px;  
+	width:100%;  
+	height:20px;
+	background-color: #EEE; 
+	color: #003366; 
+	font-size: 100%; 
+	border-width:0px 0px 1px 0px; 
+	border-style:solid; 
+	border-color:#003366; 
+	padding:0px;
+}
+
+div#admin_submenu
+{
+	position:absolute;
+	top:60px;
+	right:0px;  
+	height:20px;
+	color: #003366; 
+	font-size: 100%; 
+	border-width:0px; 
+	padding:0px;
+}
+
+
+@media screen
+{
+	body>div#header
+	{
+		position:fixed;
+	}
+	body>div#admin_nav
+	{
+		position:fixed;
+	}
+	body>div#admin_submenu
+	{
+		position:fixed;
+	}
+}
+
+* html body
+{ 
+	overflow:hidden; 
+} 
+div#content
+{
+	height:100%; 
+	background-color: #FFF; 
+	overflow:auto; 
+	text-align:center;
+	color: #003366;
+	font-size:14px;
+	font-weight:normal;
+}
+
+
+a:link		{ color: #003366; text-decoration:none; }
+a:active	{ color: #4477aa; text-decoration:none; }
+a:visited	{ color: #114477; text-decoration:none; }
+a:hover		{ color: #6699cc; text-decoration:none; }
+
+#message
+{
+	margin-right:10px;
+}
+
+#messageContainer
+{
+	z-index:4;
+	top:38px;
+	width:100%;
+	color: #cc0000;
+	font-size: 100%; 
+	font-weight: normal; 
+	white-space:nowrap;
+}
+
+img 
+{
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	vertical-align:middle;
+}
+table {border-collapse: collapse;}
+table.center, table.plot {margin:0px auto;}
+table.plot td {color:#003366; background-color:#eeeeee;border:1px solid #ddd; padding:2px 3px;}
+
+table.login_form { text-align:center;}
+table.login_form td.left { text-align:left;}
+table.login_form td.right { text-align:right; }
+
+td.header,table tr.header td 
+{
+	background-color:#DDDDDD; 
+	padding:2px 5px; 
+	text-align:center; 
+	font-weight:bold;
+	border:1px solid #ccc; 
+	color: #003366;
+}
+
+td.row,table tr.row td 
+{
+	background-color:#EEEEEE; 
+	padding:2px 2px; 
+	text-align:left; 
+	font-weight:normal;
+	border:1px solid #ccc; 
+	color:#003366;
+}
+
+
+.button 
+{
+	background-color:#DDDDDD; 
+	padding: 0px 4px;
+	margin: 0px; 
+	text-align:center;
+	border-style:solid;
+	border-width:1px; 
+	border-color:#003366; 
+	font: normal 100% Tahoma, "Trebuchet MS", Trebuchet, Helvetica, Verdana, sans-serif;
+	color: #003366;
+}
+
+p.titolo-tab 
+{ 
+	margin:0px; 
+	color: #003366; 
+	font-size: 230%; 
+	font-weight:bold; 
+	text-align:center;
+}
+
+p.titolo 
+{ 
+	color: #003366; 
+	font-size: 220%; 
+	font-weight:normal; 
+	text-align:center; 
+	margin:0px;
+}
+
+table.admin_nav 
+{ 
+	color: #003366; 
+	font-size: 80%; 
+	padding:0px; 
+	border:0px solid #eeeeee;
+	margin:0px;
+}
+
+input 
+{
+	background-color:#FFFFFF; 
+	text-align:left; 
+	border:1px solid #CCC;
+	font: normal 110% Tahoma, "Trebuchet MS", Trebuchet, Helvetica, Verdana, sans-serif;
+	color: #003366
+}
+
+.input 
+{
+	background-color:#FFFFFF; 
+	text-align:left; 
+	border:1px solid #CCC;
+	font: normal 110% Tahoma, "Trebuchet MS", Trebuchet, Helvetica, Verdana, sans-serif;
+	color: #003366
+}
+
+table.tab_header 
+{ 
+	border-width:0px; 
+	width:100%; 
+	margin:0px auto; 
+	padding:0px;
+}
+
+table.tab_header td
+{
+	border-width: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+p.title 
+{
+	margin:0px; 
+	display:inline;
+	font-size:220% 
+}
+div.centra {text-align:center;}
+div.inline { display:inline; float:left; width:250px;height:150px; }
+div.inline_large { display:inline; float:left; width:300px;height:150px; }
+
+table td.right {text-align:right;}
+table td.left {text-align:left;}
+table td.center {text-align:center;}
+
+table tr.row_attivo td {background-color:#EEEEEE; text-align:left;border:1px solid #CCC; }
+table tr.row_inattivo td {background-color:#DDDDDD; color:#888;text-align:left;border:1px solid #CCC;}
+td.footer,table tr.footer td {background-color:#DDDDDD; padding:2px 2px; text-align:left; border:1px solid #ccc; }
+tr.locked td {color:#777}
+tr.high td {background-color:#ddf;cursor:pointer;text-align:left}
+select 
+{
+	background-color:#fff; 
+	text-align:left; 
+	border:1px solid #ccc;
+	font: normal 100% Tahoma, "Trebuchet MS", Trebuchet, Helvetica, Verdana, sans-serif;
+	color: #003366
+}
+
+form.inline 
+{ 
+	vertical-align:text-top;
+	display:inline-block;
+}

@@ -1,0 +1,25 @@
+SELECT	devices.name,
+			activities.date,
+			CONCAT(activities.from div 60,":",LPAD(activities.from mod 60,2,'0')) AS `from`,
+			CONCAT(activities.to div 60,":",LPAD(activities.to mod 60,2,'0')) AS `to`,
+			activities.to-activities.from AS durata,
+			activities_types.name AS activity, 
+			CAST(group_concat(concat(sites.code,LPAD(rms.number,5,'0'),
+				' - ',REPLACE(rms.text,',','{'),' - ',statuses.name)) AS CHAR(1000)) as status,
+			CAST(group_concat(concat(sites.code,LPAD(rms_maint.number,5,'0'),
+				' - ',REPLACE(rms_maint.text,',','{'),' - ',statuses_maint.name)) AS CHAR(1000)) as status_maint,
+			activities.fault_description,
+			activities.fault_solution,
+			CAST(GROUP_CONCAT( DISTINCT systems.name) AS CHAR(1000)) AS systems_involved
+		FROM activities LEFT JOIN utenti ON activities.users_id=utenti.id 
+			LEFT JOIN activities_types ON activities.activities_types_id=activities_types.id 
+			LEFT JOIN devices ON activities.devices_id=devices.id 
+			LEFT JOIN sites ON devices.sites_id=sites.id
+			LEFT JOIN rms ON activities.id=rms.activities_id 
+			LEFT JOIN statuses ON rms.statuses_id=statuses.id 
+			LEFT JOIN maint_rms ON activities.maint_id=maint_rms.maint_id
+			LEFT JOIN rms AS rms_maint ON rms_maint.id=maint_rms.rms_id
+			LEFT JOIN statuses AS statuses_maint ON activities.statuses_id=statuses_maint.id 
+			LEFT JOIN systems ON activities.systems_involved & (1 << CAST(systems.id AS UNSIGNED)) >0
+		GROUP BY activities.id
+		ORDER BY activities.devices_id,activities.activities_types_id,activities.date,activities.from,activities.to

@@ -69,13 +69,13 @@
 
 		if($edit)
 		{
-			$query="SELECT * FROM maint_rms WHERE maint_id 
+			$query="SELECT * FROM maint_rms WHERE maint_id
 				IN (SELECT maint_id FROM activities WHERE activities.id='$activities_id')";
 			$result=do_query($query,$conn);
 			$rows=result_to_array($result,true);
 			foreach($rows as $row)
 				fixStatus($row["rms_id"],$activities_id,$conn);
-			$query="DELETE FROM maint_rms WHERE maint_id 
+			$query="DELETE FROM maint_rms WHERE maint_id
 				IN (SELECT maint_id FROM activities WHERE activities.id='$activities_id')";
 			do_query($query,$conn);
 			$query="UPDATE activities SET
@@ -174,7 +174,7 @@
 		$sites_array=result_to_array($result,false);
 		$sites_id=(int)$sites_array[0]["sites_id"];
 
-		$query="SELECT number FROM rms LEFT JOIN activities ON 
+		$query="SELECT number FROM rms LEFT JOIN activities ON
 					rms.activities_id=activities.id
 					LEFT JOIN devices ON activities.devices_id=devices.id
 				WHERE devices.sites_id='$sites_id'
@@ -202,7 +202,7 @@
 			}
 			else
 			{
-				$query="SELECT activities.* FROM activities 
+				$query="SELECT activities.* FROM activities
 						LEFT JOIN maint_rms ON activities.maint_id=maint_rms.maint_id
 						WHERE maint_rms.rms_id='$temp_rms_id'";
 				$result=do_query($query,$conn);
@@ -236,7 +236,7 @@
 				do_query($query,$conn);
 
 
-				$query="SELECT activities.id 
+				$query="SELECT activities.id
 						FROM activities LEFT JOIN maint_rms ON activities.maint_id=maint_rms.maint_id
 						WHERE maint_rms.rms_id='$temp_rms_id'
 						ORDER BY date DESC, `to` DESC
@@ -266,12 +266,12 @@
 	{
 		$flipped=array_flip($_POST);
 		list($edit,$table)=explode("_",$flipped["confirm"]);
-		$name=$_POST["name"];
-		$surname=$_POST["surname"];
+		$name=str_replace("'","\'",$_POST["name"]);
+		$surname=str_replace("'","\'",$_POST["surname"]);
 		if($edit=="edit")
 		{
 			$id=$_POST["id_anagrafica"];
-			$query="UPDATE $table SET 
+			$query="UPDATE $table SET
 				name='$name',
 				surname='$surname'
 				WHERE id='$id'";
@@ -298,13 +298,13 @@
 
 		$conn=opendb();
 		$query="UPDATE utenti SET login='".$_POST["utente"]."',
-					nome='".$_POST["nome"]."', 
+					nome='".$_POST["nome"]."',
 					cognome='".$_POST["cognome"]."',
-					email='".$_POST["email"]."', 
-					livello=".$_POST["livello"].", 
-					sites=".$sites.", 
+					email='".$_POST["email"]."',
+					livello=".$_POST["livello"].",
+					sites=".$sites.",
 					expired=$expired,
-					attivo=$attivo 
+					attivo=$attivo
 				WHERE id='".$_POST["id_admin_users"]."'";
 		do_query($query,$conn);
 		closedb($conn);
@@ -321,7 +321,7 @@
 		$query="INSERT INTO utenti(login,pass,nome,cognome,email,sites,
 					livello,expired)
 				VALUES('".$_POST["utente"]."', md5('$pass'),
-					'".$_POST["nome"]."', 
+					'".$_POST["nome"]."',
 					'".$_POST["cognome"]."',
 					'".$_POST["email"]."',
 					'".$sites."',
@@ -391,7 +391,7 @@
 
 function fixStatus($rms_id,$activities_id,$conn)
 {
-	$query="SELECT statuses_id FROM activities 
+	$query="SELECT statuses_id FROM activities
 				LEFT JOIN maint_rms ON activities.maint_id=maint_rms.maint_id
 				WHERE maint_rms.rms_id='$rms_id'
 				AND activities.id!='$activities_id'
